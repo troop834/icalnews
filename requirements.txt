@@ -1,1 +1,2 @@
 icalevents==0.1.25
+pyinstaller==5.1
