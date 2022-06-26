@@ -1,11 +1,16 @@
 #!/usr/bin/env python
 
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from icalevents import icalparser
 from icalevents.icalevents import events
 from os import path
 
-def format_date(start: date, end: date, all_day: bool) -> str:
+def format_date(start: datetime, end: datetime, all_day: bool) -> str:
+    if not start.tzinfo:
+        start = icalparser.normalize(start)
+    if not end.tzinfo:
+        end = icalparser.normalize(start)
+
     if all_day:
         if start.year == end.year \
                 and start.month == end.month \
