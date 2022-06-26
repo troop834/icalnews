@@ -4,6 +4,12 @@ from datetime import date, datetime, timedelta
 from icalevents import icalparser
 from icalevents.icalevents import events
 from os import path
+from platform import system
+
+if system() == 'Windows':
+    HOUR_SPEC = '%#I'
+else:
+    HOUR_SPEC = '%l'
 
 def format_date(start: datetime, end: datetime, all_day: bool) -> str:
     if not start.tzinfo:
@@ -28,11 +34,11 @@ def format_date(start: datetime, end: datetime, all_day: bool) -> str:
                 and start.day == end.day:
             # Specific time, single day
             # Weekday Month DD, YYYY, HH:MM to HH:MM
-            return start.strftime('%A %B %e, %Y, %l:%M') + ' to ' + end.strftime('%l:%M')
+            return start.strftime(f'%A %B %e, %Y, {HOUR_SPEC}:%M %p') + ' to ' + end.strftime(f'{HOUR_SPEC}:%M %p')
         else:
             # Specific times, multiple days
             # Weekday Month DD, YYYY, HH:MM to Weekday Month DD, YYYY, HH:MM
-            return start.strftime('%A %B %e, %Y, %l:%M') + ' to ' + end.strftime('%A %B %e, %Y, %l:%M')
+            return start.strftime(f'%A %B %e, %Y, {HOUR_SPEC}:%M %p') + ' to ' + end.strftime(f'%A %B %e, %Y, {HOUR_SPEC}:%M %p')
     raise RuntimeError('Impossible position reached')
 
 def main(url: str, days: int, template, output):
