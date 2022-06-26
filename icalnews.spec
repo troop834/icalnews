@@ -1,5 +1,13 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+##
+## icalnews - icalnews.spec
+##
+## Copyright (C) 2022 Kian Kasad
+##
+## This file is made available under a modified BSD license.
+## See the accompanying LICENSE file for details.
+##
 
 block_cipher = None
 
@@ -42,3 +50,5 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
 )
+
+# vim: ft=python

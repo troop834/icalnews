@@ -1,5 +1,15 @@
 #!/usr/bin/env python
 
+##
+## icalnews - icalnews.py
+## Parse events from an iCalendar URL into a newsletter template
+##
+## Copyright (C) 2022 Kian Kasad
+##
+## This file is made available under a modified BSD license.
+## See the accompanying LICENSE file for details.
+##
+
 from datetime import date, datetime, timedelta
 from icalevents import icalparser
 from icalevents.icalevents import events
