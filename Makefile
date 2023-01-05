@@ -14,3 +14,7 @@ all: install-deps icalnews.py icalnews.spec template.html
 .PHONY: install-deps
 install-deps: requirements.txt
 	pip install -r requirements.txt
+
+.PHONY: clean
+clean:
+	rm -rf build dist
